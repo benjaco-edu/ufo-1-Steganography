@@ -1,0 +1,68 @@
+The first half-hour
+
+links
+
+20.08   ASCII - Wikipedia, den frie encyklopædi         da.wikipedia.org
+20.08   aschi - Google-søgning                          www.google.com
+20.02   JavaScript String fromCharCode() Method         www.w3schools.com
+20.02   js ascii code to char - Google-søgning          www.google.com
+20.01   javascript - how to convert binary string to decimal? - Stack Overflow          stackoverflow.com
+20.01   js binary to decimal - Google-søgning           www.google.com
+19.59   Underdash                                       surma.github.io
+19.59   underdash - Google-søgning                      www.google.com
+19.59   How do you split an array into array pairs in JavaScript? - Stack Overflow      stackoverflow.com
+19.59   js group in pair of 8 - Google-søgning          www.google.com
+19.51   get-pixels - npm                                www.npmjs.com
+19.51   nodejs read image pixels from file - Google-søgning                             www.google.com
+19.50   Get an array of pixels from an image file using node.js - Stack Overflow        stackoverflow.com
+
+I started by downloading the image and create a new file to work in, namely script.js
+First I tried to load in the file with nodes file handler, I got the file in raw bytes (discovered in the inspector) but know that a png file has some header information in the top if opened in notepad, therefore I booted up GIMP to find the first couple of pixel values to look for, but the pattern wasn't showing.
+Then I searched google for to find how to read a images as pixel-values and found a library called 'get-pixels', then I read in the image with the library, and inspected again, I did find the red pixel value pattern in the data for every 4th value, the png format is carrying an extra value for alpha.
+Now I could filter out every 4th value, convert to bits, take the last, then group it into 8 bits with Underdash, and convert it into ASCII, but with no result, I have asserted that I'm reading the rows, not columns.
+
+
+The next 30 mins
+
+20.53   ASCII - Wikipedia, den frie encyklopædi         da.wikipedia.org
+20.52   Byte - Wikipedia, den frie encyklopædi          da.wikipedia.org
+20.52   bytes - Google-søgning                          www.google.com
+20.46   substituted definition - Google-søgning         www.google.com
+20.46   substituted - Google-søgning                    www.google.com
+20.32   Transposing a 2D-array in JavaScript - Stack Overflow           stackoverflow.com
+20.32   node js transpose matrix - Google-søgning           www.google.com
+20.32   js transpose image - Google-søgning             www.google.com
+20.31   least significant bit - Google-søgning          www.google.com
+20.30   Steganography - Wikipedia                       en.wikipedia.org
+
+I started to think that the x- and y-axis were switched around, normally, (0,0) is the top-left pixel when we speak images, and (1,0) is the one to the right, so I tried to transpose the image to see if the (1,0) was the pixel just under the original origin, but again no luck, next thing I want to try is using the other corners as origin and use both directions, I tried both to convert it if it was 7 and 8 bits.
+
+
+Next 30 mins
+
+21.37   String.fromCharCode - Google-søgning        www.google.com
+21.36   String.fromCharCode() - JavaScript | MDN    developer.mozilla.org
+21.21   JavaScript Array slice() Method             www.w3schools.com
+21.21   js get sub array - Google-søgning           www.google.com
+
+I tried to take a line of pixels from each corner, and again take the least significant bit and merge them together both as 7 and 8 bits, but the result is still nonsense
+7lYHwV '
+?7onZ8)
+E]a5*w>4
+{0J-L;{vD~
+{
+jcB\2P6A
+QTAPPX 6
+BA46&!c
+
+##################################################################################################
+3 hardest things:
+1: the thougest thing is the find the patten, i did control the findings in GIMP but when I converted it to ASCII the results where nonesense, I eighter have a bug in the code for char converting, thouge I stepped thouge it and did controll that it converted the charcodes [1] to the propper chars
+
+the 2 next wasn't a big problem, but I had to google it
+2: loading in the image wasn't just reading the bytes and use them, but with a quick google search I found a library to do it, when looking in the used library, it isn't trivial
+
+3: to locate and manipulated the array required a couple of tries, the line of pixels from the bottom right and up was the toughest, but trying a couple of things and having a good matrix understanding did help
+
+
+[1] https://da.wikipedia.org/wiki/ASCII
